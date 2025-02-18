@@ -1,0 +1,13 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="black">#FF000000</color>
+    <color name="white">#FFFFFFFF</color>
+    <color name="basebgcolor">#070813</color>
+    <color name="itembgcolor">#0d0f20</color>
+    <color name="buttoncolor">#ffffff</color>
+    <color name="cardcolor">#090b18</color>
+    <color name="sarirenk">#f0b121</color>
+    <color name="mor">#ff1e1e</color>
+    <color name="mevcut">#419f00</color>
+    <color name="cardvb">#0e1024</color>
+</resources>

@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">film</string>
+    <string name="basebgcolor">#183b5b</string>
+    <string name="itembgcolor">#204c74</string>
+    <!-- TODO: Remove or change this placeholder text -->
+    <string name="hello_blank_fragment">Hello blank fragment</string>
+    <string name="korku">Korku</string>
+    <string name="bilim_kurgu">Bilim Kurgu</string>
+    <string name="suc">Suç</string>
+    <string name="seri_katil">Seri Katil</string>
+    <string name="fantastik">Fantastik</string>
+    <string name="anime">Anime</string>
+    <string name="dram">Dram</string>
+    <string name="vampir">Vampir</string>
+    <string name="dogaustu_korku">Doğaüstü Korku</string>
+    <string name="macera">Macera</string>
+    <string name="gerilim">Gerilim</string>
+
+</resources>

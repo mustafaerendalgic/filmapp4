@@ -1,0 +1,109 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.cardview.widget.CardView xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:id="@+id/cl"
+    android:layout_width="250dp"
+    android:layout_height="150dp"
+    app:cardCornerRadius="15dp">
+
+    <androidx.constraintlayout.widget.ConstraintLayout
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <ImageView
+            android:id="@+id/poster"
+            android:layout_width="match_parent"
+            android:layout_height="250dp"
+            android:layout_gravity="center_horizontal"
+            android:scaleType="centerCrop"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintHorizontal_bias="0.0"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            tools:srcCompat="@tools:sample/avatars" />
+
+        <ImageView
+            android:id="@+id/imageView12"
+            android:layout_width="0dp"
+            android:layout_height="200dp"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:srcCompat="@drawable/gradientlinearfrombottom" />
+
+        <ImageView
+            android:id="@+id/pluseighteen"
+            android:layout_width="20dp"
+            android:layout_height="20dp"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent"
+            app:srcCompat="@drawable/_8_plus" />
+
+        <TextView
+            android:id="@+id/isimdesign3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:autoSizeMaxTextSize="20dp"
+            android:autoSizeMinTextSize="1dp"
+            android:autoSizeStepGranularity="1sp"
+            android:autoSizeTextType="uniform"
+            android:gravity="left"
+            android:text="ISIM"
+            android:textColor="@color/buttoncolor"
+            android:textStyle="bold"
+            android:layout_marginStart="6dp"
+            app:layout_constraintBottom_toTopOf="@+id/imdbpuani2"
+            app:layout_constraintStart_toStartOf="parent"
+            />
+
+        <LinearLayout
+            android:id="@+id/imdbpuani2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:gravity="center"
+            android:orientation="horizontal"
+            app:layout_constraintBottom_toBottomOf="parent"
+            app:layout_constraintStart_toStartOf="parent">
+
+            <ImageView
+                android:id="@+id/imageView2"
+                android:layout_width="40dp"
+                android:layout_height="35dp"
+                android:contentDescription="IMDb Logo"
+                android:visibility="visible"
+                app:layout_constraintBottom_toTopOf="@+id/fiyat"
+                app:layout_constraintEnd_toStartOf="@+id/imdbpuani"
+                app:layout_constraintTop_toBottomOf="@id/isimdesign3"
+                tools:srcCompat="@drawable/imdb" />
+
+            <TextView
+                android:id="@+id/imdbpuani"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_gravity="center_vertical"
+                android:text="Puan"
+                android:textColor="@color/buttoncolor"
+                app:layout_constraintBottom_toTopOf="@+id/fiyat"
+                app:layout_constraintStart_toEndOf="@id/imageView2"
+                app:layout_constraintTop_toBottomOf="@id/isimdesign3" />
+
+            <TextView
+                android:id="@+id/fiyattext"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="8dp"
+                android:gravity="center"
+                android:text="FIYAT"
+                android:textColor="@color/buttoncolor"
+                android:textSize="15dp"
+                app:layout_constraintBottom_toBottomOf="@id/poster"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent" />
+
+        </LinearLayout>
+
+    </androidx.constraintlayout.widget.ConstraintLayout>
+
+</androidx.cardview.widget.CardView>

@@ -1,0 +1,9 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="customSearchview" parent="Widget.AppCompat.SearchView">
+        <item name="searchIcon">@drawable/baseline_search_24</item>
+        <item name="android:editTextColor">@color/buttoncolor</item>
+        <item name="android:textColor">@color/buttoncolor</item>
+        <item name="android:textColorHint">@color/buttoncolor</item>
+    </style>
+</resources>
