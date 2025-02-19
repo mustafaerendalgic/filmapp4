@@ -1,13 +1,9 @@
 package com.example.film
-
-import android.content.Context
 import android.graphics.Rect
 import android.view.View
-import androidx.lifecycle.LiveData
 import androidx.recyclerview.widget.LinearLayoutManager
 import androidx.recyclerview.widget.LinearSnapHelper
 import androidx.recyclerview.widget.RecyclerView
-import androidx.recyclerview.widget.SnapHelper
 
 class customDesignCodes (val spancount : Int, val spacing : Int, val includeedge : Boolean)
     : RecyclerView.ItemDecoration() {
@@ -34,11 +30,11 @@ class customDesignCodes (val spancount : Int, val spacing : Int, val includeedge
             }
         }
 
-
             if(position<spancount){
                 outRect.top = spacing/2
             }
             outRect.bottom = spacing/2
+
         }
 }
 
@@ -95,10 +91,6 @@ class LeftSnapHelper(val spacing: Int) : LinearSnapHelper() {
     ): IntArray? {
         if (layoutManager !is LinearLayoutManager) return null
 
-        val firstvisible = layoutManager.findFirstVisibleItemPosition()
-        val lastvisible = layoutManager.findLastVisibleItemPosition()
-
-
         val out = IntArray(2)
         out[0] = targetView.left - spacing
         out[1] = 0
@@ -116,13 +108,11 @@ class LeftSnapHelper(val spacing: Int) : LinearSnapHelper() {
         if (firstVisibleView != null) {
 
             val firstVisibleWidth = firstVisibleView.width
-            val offset = firstVisibleView.right // Distance of the right edge of the first visible view from RecyclerView start
+            val offset = firstVisibleView.right
 
-            // Snap to the first visible item if it's more than halfway visible
             return if (offset > firstVisibleWidth / 2 ) {
                 firstVisibleView
             } else {
-                // Otherwise, snap to the next item
                 secondVisibleView
             }
 
@@ -132,7 +122,7 @@ class LeftSnapHelper(val spacing: Int) : LinearSnapHelper() {
 }
 
 
-class rvs(val rv : RecyclerView, val listesi : List<film>, spacing: Int){
+class rvs(rv : RecyclerView, listesi : List<film>, spacing: Int){
     val adapter = Adaptermain()
     val leftSnapHelper = LeftSnapHelper(spacing)
     init{

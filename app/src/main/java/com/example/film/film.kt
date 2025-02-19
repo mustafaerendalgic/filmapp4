@@ -1,5 +1,4 @@
 package com.example.film
-
 import android.content.Context
 import androidx.lifecycle.LiveData
 import androidx.room.Dao
@@ -10,10 +9,7 @@ import androidx.room.PrimaryKey
 import androidx.room.Query
 import androidx.room.Room
 import androidx.room.RoomDatabase
-import androidx.room.TypeConverters
-import androidx.room.Update
-import kotlinx.coroutines.flow.Flow
-import java.io.Serializable
+
 @Entity (tableName = "filmtable")
 data class film(
    val posterurl : String,
@@ -82,7 +78,6 @@ abstract class filmdatabase : RoomDatabase(){
          }
          return data!!
       }
-
    }
 }
 

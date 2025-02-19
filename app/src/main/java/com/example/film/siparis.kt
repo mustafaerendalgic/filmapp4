@@ -94,7 +94,7 @@ class siparis : AppCompatActivity() {
             finish()
         }
     }
-    fun iptalet(view: View) {
+    fun iptalet() {
         val builder = AlertDialog.Builder(this)
         if(!orderlist.isEmpty()){
             builder.setMessage("Siparişi iptal etmek istediğinize emin misiniz?")

@@ -1,6 +1,5 @@
 package com.example.film
 
-import android.media.Image
 import android.view.View
 import android.widget.ImageView
 import android.widget.TextView
@@ -8,7 +7,6 @@ import androidx.appcompat.widget.AppCompatButton
 import androidx.recyclerview.widget.RecyclerView
 
 class viewholder (item : View) : RecyclerView.ViewHolder(item){
-    //val addbutton : Button
     val poster : ImageView
     val isim : TextView
     val fiyat : TextView
@@ -28,8 +26,6 @@ class viewholder (item : View) : RecyclerView.ViewHolder(item){
         imdb = item.findViewById(R.id.imageView2)
 
         agerange = item.findViewById(R.id.pluseighteen)
-
-        //addbutton = item.findViewById(R.id.eklebuton)
 
     }
 }
