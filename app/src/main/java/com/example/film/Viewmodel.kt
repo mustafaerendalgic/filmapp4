@@ -1,15 +1,41 @@
 package com.example.film
 
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.lifecycle.ViewModel
 import androidx.lifecycle.ViewModelProvider
 import androidx.lifecycle.viewModelScope
+import kotlinx.coroutines.Dispatchers
 import kotlinx.coroutines.launch
-
-
+import kotlinx.coroutines.withContext
 
 
 class View_model (val filmdao: FilmDao) : ViewModel(){
+
+    private var _sonarananlarlist = MutableLiveData<List<Int>>(mutableListOf())
+    private var sonarananlar = MutableLiveData<List<film>>()
+    val sonarananlargetter : LiveData<List<film>> get() = sonarananlar
+
+    fun sonArananlarEkle(id : Int){
+        val list = _sonarananlarlist.value?.toMutableList() ?: mutableListOf()
+        if(!list.contains(id)) {
+            if (list.size >= 10) {
+                list.removeAt(0)
+            }
+
+            list.add(id)
+        }
+        _sonarananlarlist.value = list
+        sonArananlarguncelle()
+    }
+
+    fun sonArananlarguncelle(){
+        viewModelScope.launch {
+            val idlist = _sonarananlarlist.value ?: emptyList()
+            val movies = withContext(Dispatchers.IO){filmdao.getmovielistbyid(idlist)}
+            sonarananlar.postValue(movies)
+        }
+    }
 
     val boughtmovies : LiveData<List<film>> = filmdao.getbought()
     val whatsnewlist : LiveData<List<film>> = filmdao.getTheWhatsNewList()
@@ -26,7 +52,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             drakulaPoster,
             "Drakula (1931)",
             7.4f,
-            50.0f,
+            20.0f,
             "1 Saat 15 Dk.",
             drakulaDesc,
             "1931",
@@ -36,7 +62,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             othersPoster,
             "The Others",
             7.6f,
-            50.0f,
+            20.0f,
             "1 Saat 41 Dk.",
             othersDesc,
             "2001",
@@ -46,7 +72,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             letTheRightOneInPoster,
             "Let The Right One In",
             7.8f,
-            50.0f,
+            20.0f,
             "1 Saat 54 Dk.",
             letTheRightOneInDesc,
             "2008",
@@ -56,7 +82,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             angstPoster,
             "Angst (1983)",
             7.3f,
-            40f,
+            20.0f,
             "1 Saat 27 Dk.",
             angstDesc,
             "1983",
@@ -68,7 +94,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             theFellowShipOfTheRingPoster,
             "Yüzüklerin Efendisi: Yüzük Kardeşliği",
             8.9f,
-            50.0f,
+            20.0f,
             "2 Saat 58 Dk.",
             theFellowShipOfTheRingDesc,
             "2001",
@@ -78,7 +104,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             theNightOfTheHunterPoster,
             "The Night Of The Hunter",
             8.0f,
-            40.0f,
+            20.0f,
             "1 Saat 32 Dk.",
             theNightOfTheHunterDesc,
             "1955",
@@ -88,7 +114,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             whatEverHappenedToBabyJanePoster,
             "Küçük Bebeğe Ne Oldu?",
             8.0f,
-            50.0f,
+            20.0f,
             "2 Saat 14 Dk.",
             whatEverHappenedToBabyJaneDesc,
             "1962",
@@ -98,7 +124,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             spiritedAwayPoster,
             "Spirited Away",
             8.6f,
-            50.0f,
+            20.0f,
             "2 Saat 4 Dk.",
             spiritedAwayDesc,
             "2001",
@@ -108,7 +134,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             dunePartOnePoster,
             "Dune: Birinci Bölüm",
             8.0f,
-            50.0f,
+            20.0f,
             "2 Saat 35 Dk.",
             dunePartOneDesc,
             "2021",
@@ -118,7 +144,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             manBitesDogPoster,
             "C'est Arrive Pres de Chez Vous",
             7.4f,
-            40.0f,
+            20.0f,
             "1 Saat 35 Dk.",
             manBitesDogDesc,
             "1992",
@@ -130,7 +156,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             graveOfTheFirefliesPoster,
             "Grave Of The Fireflies",
             8.5f,
-            50.0f,
+            20.0f,
             "1 Saat 28 Dk.",
             graveOfTheFirefliesDesc,
             "1988",
@@ -140,7 +166,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             madMaxPoster,
             "Mad Max",
             8.1f,
-            50.0f,
+            20.0f,
             "2 Saat",
             madMaxDesc,
             "2015",
@@ -150,7 +176,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             elOrfanatoPoster,
             "El Orfanato (Yetimhane)",
             7.4f,
-            50.0f,
+            20.0f,
             "1 Saat 45 Dk.",
             elOrfanatoDesc,
             "2007",
@@ -160,7 +186,7 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             henryPortraitOfASerialKillerPoster,
             "Henry: Portrait Of A Serial Killer",
             7.0f,
-            40.0f,
+            20.0f,
             "1 Saat 23 Dk.",
             henryPortraitOfASerialKillerDesc,
             "1986",
@@ -172,28 +198,24 @@ class View_model (val filmdao: FilmDao) : ViewModel(){
             gobletOfFirePoster,
             "Harry Potter: Goblet Of Fire",
             7.7f,
-            50.0f,
+            20.0f,
             "2 Saat 37 Dk.",
             gobletOfFireDesc,
             "2005",
             "Fantastik, Macera"
         )
     )
-
     fun initializefilmlist() {
-
         viewModelScope.launch {
-
             val maxid = filmdao.getmaxid() ?: 0
 
             if (maxid == 0) {
                 filmdao.filmlistesiekle(films)
             } else {
-                val newfilms = films.filter { it -> it.id > maxid }
-                if (!newfilms.isEmpty())
+                val newfilms = films.filter { it.id > maxid }
+                if (newfilms.isNotEmpty())
                     filmdao.filmlistesiekle(ArrayList(newfilms))
             }
-
         }
     }
 }

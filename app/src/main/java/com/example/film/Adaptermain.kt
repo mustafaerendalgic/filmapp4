@@ -1,10 +1,13 @@
 package com.example.film
 
 import android.app.Activity
+import android.content.Context
 import android.content.Intent
 import android.view.LayoutInflater
 import android.view.View
 import android.view.ViewGroup
+import androidx.lifecycle.ViewModelProvider
+import androidx.lifecycle.ViewModelStore
 import androidx.recyclerview.widget.DiffUtil
 import androidx.recyclerview.widget.ListAdapter
 import com.bumptech.glide.Glide
@@ -75,7 +78,7 @@ class Adaptersiparis() : ListAdapter<film, siparisviewh>(FilmDiffCallback()){
     override fun onBindViewHolder(holder: siparisviewh, position: Int) {
         val item = getItem(position)
 
-        holder.fiyatsip.text = "${item.fiyat} TL"
+        holder.fiyatsip.text = "${item.fiyat} ₺"
         Glide.with(holder.itemView.context)
             .load(item.posterurl)
             .into(holder.postersip)
@@ -108,7 +111,8 @@ class Adapterbenzer() : ListAdapter<film, benzerviewh>(FilmDiffCallback()){
     }
 }
 
-class adaptersearch : ListAdapter<film, arama_veiewh>(FilmDiffCallback()){
+class adaptersearch(val viewm : View_model) : ListAdapter<film, arama_veiewh>(FilmDiffCallback()){
+
 
     override fun onCreateViewHolder(parent: ViewGroup, viewType: Int): arama_veiewh {
         val view = LayoutInflater.from(parent.context).inflate(R.layout.aramadesign, parent, false)
@@ -119,21 +123,14 @@ class adaptersearch : ListAdapter<film, arama_veiewh>(FilmDiffCallback()){
         val item = getItem(position)
         holder.isimarama.text = item.isim
         holder.aramayil.text = item.yapımyil
-        holder.fiyatarama.text = "${item.fiyat} TL"
+        holder.fiyatarama.text = "${item.fiyat} ₺"
         Glide.with(holder.itemView.context).load(item.posterurl).into(holder.posterarama)
         holder.itemView.setOnClickListener{
-            if(!sonarananlarlist.contains(item))
-                if(sonarananlarlist.size<=9){
-                    sonarananlarlist.add(item)
-                }
-                else{
-                    sonarananlarlist.remove(sonarananlarlist.last())
-                    sonarananlarlist.add(item)
-                }
+            viewm.sonArananlarEkle(item.id)
             val intent = Intent(holder.itemView.context, detayekran::class.java)
             intent.putExtra("index", item.id)
             holder.itemView.context.startActivity(intent)
-            submitList(sonarananlarlist.reversed())
+
         }
     }
 }

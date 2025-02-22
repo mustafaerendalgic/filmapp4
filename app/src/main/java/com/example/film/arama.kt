@@ -42,15 +42,39 @@ class arama : Fragment() {
 
         fun searchDatabase(aramametni:String, adapter : adaptersearch){
             lifecycleScope.launch {
-                val filtered = withContext(Dispatchers.IO){ db.filmDao().getthefilteredlist(aramametni)}
-                adapter.submitList(filtered)
+                val aramametnimod = aramametni.trim()
+                val filtered = withContext(Dispatchers.IO){ db.filmDao().getthefilteredlist(aramametnimod)}
+                if(!aramametnimod.isNullOrEmpty())
+                    adapter.submitList(filtered)
+                else{
+                    if(viewm.sonarananlargetter.value.isNullOrEmpty()){
+                        viewm.whatsnewlist.observe(viewLifecycleOwner){data ->
+                            adapter.submitList(data)}
+                    }
+                    else{
+                        viewm.sonarananlargetter.observe(viewLifecycleOwner){
+                                data-> adapter.submitList(data)
+                        }
+                    }
+                }
             }
         }
+        val adapter = adaptersearch(viewm)
 
-        val adapter = adaptersearch()
+        viewm.sonarananlargetter.observe(viewLifecycleOwner){
+            //if(aramametni.text.isEmpty())
+                adapter.submitList(it)
+        }
 
-        viewm.whatsnewlist.observe(viewLifecycleOwner){data ->
-            adapter.submitList(data)}
+        if(viewm.sonarananlargetter.value.isNullOrEmpty()){
+            viewm.whatsnewlist.observe(viewLifecycleOwner){data ->
+                adapter.submitList(data)}
+        }
+        else{
+            viewm.sonarananlargetter.observe(viewLifecycleOwner){
+                    data-> adapter.submitList(data)
+            }
+        }
 
         val rvarama = view.findViewById<RecyclerView>(R.id.aramarv)
         rvarama.adapter = adapter

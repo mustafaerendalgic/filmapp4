@@ -1,8 +1,8 @@
 package com.example.film
 
-val orderlist = ArrayList<film>()
+import androidx.lifecycle.LiveData
 
-val sonarananlarlist = ArrayList<film>()
+val orderlist = ArrayList<film>()
 
 val listofrv = ArrayList<rvs>()
 

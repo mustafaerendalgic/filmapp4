@@ -30,7 +30,6 @@ class BrowserFragment2 : Fragment() {
         val viewm = ViewModelProvider(this, Viewmodelfactory(db.filmDao())).get(View_model::class.java)
         val donguresim = view.findViewById<ImageView>(R.id.loopimage)
         val donguresimarka = view.findViewById<ImageView>(R.id.loopimagebehind)
-        val frame = view.findViewById<FrameLayout>(R.id.framelayout1)
         val search_bar = view.findViewById<ConstraintLayout>(R.id.cl)
         val korkurv = view.findViewById<RecyclerView>(R.id.korku)
         val animerv = view.findViewById<RecyclerView>(R.id.animefilm)
@@ -39,7 +38,7 @@ class BrowserFragment2 : Fragment() {
         val serikatilrv = view.findViewById<RecyclerView>(R.id.serikrv)
         val bilimkurgurv = view.findViewById<RecyclerView>(R.id.bilimkurgurv)
         val posterismi = view.findViewById<TextView>(R.id.posterinismi)
-        val gradient = view.findViewById<ImageView>(R.id.imageView6)
+
 
         val screenwidth = view.context.resources.displayMetrics.widthPixels
         val density = view.context.resources.displayMetrics.density
@@ -96,12 +95,6 @@ class BrowserFragment2 : Fragment() {
                 }
             }
         }
-
-        /*gradient.setOnClickListener {
-            val intent = Intent(requireContext(), detayekran::class.java)
-            intent.putExtra("index", currentindex)
-            requireContext().startActivity(intent)
-        }*/
 
         search_bar.setOnClickListener {
             requireActivity().supportFragmentManager.beginTransaction().replace(R.id.framelayout1, arama()).commit()

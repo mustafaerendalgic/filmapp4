@@ -77,7 +77,7 @@ class siparis : AppCompatActivity() {
         else{
             emptyimage.visibility = View.VISIBLE
         }
-        toplam.text = "${toplamfiyat} TL"
+        toplam.text = "${toplamfiyat} ₺"
 
         siparisadapter = Adaptersiparis()
         siparisadapter.submitList(orderlist)
@@ -92,6 +92,10 @@ class siparis : AppCompatActivity() {
         val back = findViewById<ImageView>(R.id.imageView5)
         back.setOnClickListener {
             finish()
+        }
+        val iptalbuton = findViewById<AppCompatButton>(R.id.iptal)
+        iptalbuton.setOnClickListener {
+            iptalet()
         }
     }
     fun iptalet() {
@@ -108,5 +112,10 @@ class siparis : AppCompatActivity() {
             dialog.show()
         }
 
+        else{
+            Toast.makeText(this, "Sepet boş", Toast.LENGTH_SHORT).show()
+        }
     }
+
+
 }

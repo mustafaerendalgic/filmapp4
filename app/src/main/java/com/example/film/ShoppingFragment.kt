@@ -36,7 +36,6 @@ class ShoppingFragment : Fragment() {
         val viewm = ViewModelProvider(this, Viewmodelfactory(db.filmDao())).get(View_model::class.java)
         val rv = view.findViewById<RecyclerView>(R.id.rev)
 
-        val sv = view.findViewById<SearchView>(R.id.sv)
         val sepetclick = view.findViewById<ImageView>(R.id.sepet)
         val bigposter = view.findViewById<ImageView>(R.id.posterbig)
 
@@ -68,33 +67,6 @@ class ShoppingFragment : Fragment() {
             val siparisintent = Intent(requireContext(), siparis::class.java)
             startActivity(siparisintent)
         }
-
-        val editText = view.findViewById<EditText>(androidx.appcompat.R.id.search_src_text)
-        val searchicon = view.findViewById<ImageView>(androidx.appcompat.R.id.search_button)
-        searchicon.setColorFilter(Color.WHITE)
-        editText.setTextColor(Color.WHITE)
-
-        val hint = view.findViewById<TextView>(R.id.hint)
-
-        fun searchDatabase(aramametni:String, adapter : Adaptermain){
-            lifecycleScope.launch {
-                val filtered = withContext(Dispatchers.IO){ db.filmDao().getthefilteredlist(aramametni)}
-                adapter.submitList(ArrayList(filtered))
-            }
-        }
-
-        sv.setOnQueryTextListener(object : SearchView.OnQueryTextListener{
-            override fun onQueryTextSubmit(query: String?): Boolean {
-                return false
-            }
-
-            override fun onQueryTextChange(newText: String?): Boolean {
-                hint.visibility = if(newText.isNullOrEmpty()) View.VISIBLE else View.INVISIBLE
-                searchDatabase(newText?:"", adapter2)
-                return true
-            }
-
-        })
 
         return view
     }

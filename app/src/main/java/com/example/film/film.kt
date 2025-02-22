@@ -1,6 +1,7 @@
 package com.example.film
 import android.content.Context
 import androidx.lifecycle.LiveData
+import androidx.lifecycle.MutableLiveData
 import androidx.room.Dao
 import androidx.room.Database
 import androidx.room.Entity
@@ -35,6 +36,9 @@ interface FilmDao{
 
    @Query("SELECT * FROM filmtable WHERE id = :id LIMIT 1 ")
    suspend fun getmoviebyid(id: Int) : film
+
+   @Query("SELECT * FROM filmtable WHERE id IN (:idlist)")
+   fun getmovielistbyid(idlist : List<Int>) : List<film>
 
    @Query("SELECT MAX(id) FROM filmtable")
    suspend fun getmaxid() : Int?
