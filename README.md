@@ -24,7 +24,7 @@ An Android application built with **Kotlin** that allows users to browse movies,
 
 - **Kotlin**
 - **MVVM Architecture**
-- **Retrofit** – for API communication
+- **Room** – for storing the data of movies
 - **LiveData & ViewModel** – for reactive UI updates
 - **RecyclerView** – for listing films efficiently
 - **Navigation Component** – for screen transitions
