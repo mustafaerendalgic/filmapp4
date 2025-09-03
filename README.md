@@ -8,7 +8,6 @@ An Android application built with **Kotlin** that allows users to browse movies,
 - 📝 View detailed information about each film
 - 🛒 Simulate purchasing selected movies
 - 🧭 Smooth navigation between movie list and detail views
-- 🔗 Connects to a RESTful API to fetch movie data
 - ✨ Custom UI with modern components and transitions
 
 ## Screenshots
