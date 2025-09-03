@@ -1,6 +1,6 @@
 # FilmApp 🎬📱
 
-An Android application built with **Kotlin** that allows users to browse movies, view details, and simulate purchasing them. The app demonstrates modern Android development practices with responsive UI, MVVM architecture, and integration with a remote API.
+An Android application built with **Kotlin** that allows users to browse movies, view details, and simulate purchasing them.
 
 ## Features
 
